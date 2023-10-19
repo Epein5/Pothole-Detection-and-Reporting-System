@@ -5,7 +5,8 @@ This is the repository for our 2nd year / Fourth semester project.
 
 1 .clone the repository
     use the command
-    ```bib
+    
+    ```bin
       git clone <.... .git>
 
 2. install required dependencies
