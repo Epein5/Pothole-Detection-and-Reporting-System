@@ -1,8 +1,8 @@
 import os
 # Set this three values(basepath, replacewith, replacedigit) manually
-basepath = 'RB_DS/4603/'
-replacewith = '0'
-replacedigit = '1'
+basepath = 'datasets/'
+replacewith = '1'
+replacedigit = '11'
 
 folderspath = ['test/labels', 'train/labels','valid/labels']
 folderspath = [basepath+folder for folder in folderspath]
