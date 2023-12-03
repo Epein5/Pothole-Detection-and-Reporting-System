@@ -35,6 +35,7 @@ This is the repository for our 2nd year / Fourth semester project.
 8. To move the images and labels from one folder to another it is recommended to use 'locationchanger.py' as it moves all the labels as well as images in a go rather then CtrlX CrtlV
 
 Keep the datasets  in this format
+
       Main Dir
             |---Datasets
                      |----Train
