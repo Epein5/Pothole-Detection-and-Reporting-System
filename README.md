@@ -1,92 +1,94 @@
-# SEM_PROJECT
-This is the repository for our 2nd year / Fourth semester project.
+## SEm Project
+## Getting Started
 
-# TO GET STARTED 
-
-1 .clone the repository using the command
-
-      git clone <.... .git>
-
-2. install required dependencies
-
-         pip install -r requiremtns.txt
-
-
-
-# DATA COLLECTION AND PREPROCESSING
-
-1. Collect images you want to the yolo model to predict individually and save them in 3 folders train, test and valid
-
-2. Or you can use the 'frameextractor.py' to extract images form a video by after you have
-    - Created a folder named mov_files containg all the videos to extract from
-    - Created a folder named frames_folder (extracted frames gets saved here)
-
-3. You can label the images individually using LabelImg
-   - Tutorial link : https://www.youtube.com/watch?v=fjynQ9P2C08
-
-4. Or you can get your labelled datasets from Roboflow or any other sources to train
-
-5. To change the clases labels of your labels.txt files you can use 'change.py'
-
-6. To change the clases labels of your labels.txt files you can use the function 'find_files_with_classes()' function located in 'classchecker.py'
-
-7. If the 'change.py' didnt work properly you can use process_annotations() fnction in 'classchecker.py' to change the labels
-
-8. To move the images and labels from one folder to another it is recommended to use 'locationchanger.py' as it moves all the labels as well as images in a go rather then CtrlX CrtlV
-
-Keep the datasets  in this format
-
-      Main Dir
-            |---Datasets
-                     |----Train
-                     |       |---Images
-                     |       |---Lables
-                     |
-                     |----Test
-                     |      | ---Images
-                     |      | ---Lables
-                     |
-                     |----Valid
-                     |     | ---Images
-                     |     | ---Lables
-                     |
-                     |----data.yaml
-                     
-Note : This proess plays a vital role as any mistakes may casue the training process to be uncessful(cause errors)
-
-So make sure that for every images there is a .txt file with the same name containg the correct labels and the path is correct in data.yaml file
-
-
-
-# TRAIN THE MODEL
-
-1. Go to your project directory and clone the yolov5 git repo
-
-        git clone https://github.com/ultralytics/yolov5.git
-
-2. Around line 442 , Inside the 'train.py' located inside the yolov5 dir change the following accoring to your needs i.e ephocs, batch-size, imgsize etc
-
-         def parse_opt(known=False):
-            parser = argparse.ArgumentParser()
-            parser.add_argument('--weights', type=str, default=ROOT / 'yolov5s.pt', help='initial weights path')
-            parser.add_argument('--cfg', type=str, default='', help='model.yaml path')
-            parser.add_argument('--data', type=str, default=' .........path/to/your/data.yaml/ file.......', help='dataset.yaml path')
-            parser.add_argument('--hyp', type=str, default=ROOT / 'data/hyps/hyp.scratch-low.yaml', help='hyperparameters path')
-            parser.add_argument('--epochs', type=int, default=100, help='total training epochs')
-            parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs, -1 for autobatch')
-            parser.add_argument('--imgsz', '--img', '--img-size', type=int, default=640, help='train, val image size (pixels)')
-
-3. Activate your GPU enabled enviroment if your system suppotes GPU else just let it be (GPU will save your training time)
-      
-4. Run the train.py
-  
-            python train.py
+1. **Clone the Repository:**
+                  
+            git clone <.... .git>
    
-Wait for the training to finish
+3. **Install Dependencies:**
 
-Once the training is finished you can fing your costum model   at runs/train/expX/weights/best.pt
+            pip install -r requirements.txt
 
-5. Convert the .pt model to tflite
+## Data Collection and Preprocessing
 
-           python path/to/export.py --weights path/to/trained/weights/best.pt --include tflite
-# Now our model is ready 
+1. **Image Collection:**
+- Collect images individually and save them in three folders: `train`, `test`, and `valid`.
+
+2. **Video Frame Extraction:**
+- Use 'frameextractor.py' to extract images from videos:
+  - Place videos in the 'mov_files' folder.
+  - Extracted frames will be saved in the 'frames_folder'.
+
+3. **Labeling:**
+- Label images using LabelImg. Tutorial link [here](https://www.youtube.com/watch?v=fjynQ9P2C08).
+
+4. **Labelled Datasets:**
+- Obtain labeled datasets from Roboflow or other sources for training.
+
+5. **Manipulating Labels:**
+- Use 'change.py' or 'classchecker.py' functions to modify class labels.
+- `change.py` and `process_annotations()` functions are available for label changes.
+
+6. **Moving Images and Labels:**
+- Utilize 'locationchanger.py' to efficiently move images and corresponding labels between folders.
+
+7. **Dataset Format:**
+- Maintain the following dataset structure:
+  ```
+  Main Dir
+        |---Datasets
+                 |----Train
+                 |       |---Images
+                 |       |---Labels
+                 |
+                 |----Test
+                 |      | ---Images
+                 |      | ---Labels
+                 |
+                 |----Valid
+                 |     | ---Images
+                 |     | ---Labels
+                 |
+                 |----data.yaml
+  ```
+- Ensure every image has a corresponding .txt file with correct labels.
+
+## Training the Model
+
+1. **Clone YOLOv5 Repository:**
+            
+            git clone https://github.com/ultralytics/yolov5.git
+
+
+2. **Customize Training Parameters:**
+- Modify settings in the 'train.py' file (around line 442) to adjust epochs, batch-size, imgsize, etc.
+
+            def parse_opt(known=False):
+                  parser = argparse.ArgumentParser()
+                  parser.add_argument('--weights', type=str, default=ROOT / 'yolov5s.pt', help='initial weights path')
+                  parser.add_argument('--cfg', type=str, default='', help='model.yaml path')
+                  parser.add_argument('--data', type=str, default=' .........path/to/your/data.yaml/ file.......', help='dataset.yaml path')
+                  parser.add_argument('--hyp', type=str, default=ROOT / 'data/hyps/hyp.scratch-low.yaml', help='hyperparameters path')
+                  parser.add_argument('--epochs', type=int, default=100, help='total training epochs')
+                  parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs, -1 for autobatch')
+                  parser.add_argument('--imgsz', '--img', '--img-size', type=int, default=640, help='train, val image size (pixels)')
+                  
+3. **GPU Activation:**
+- Activate GPU-enabled environment for faster training if available.
+
+4. **Train the Model:**
+
+            python train.py
+
+Wait for the training process to complete.
+
+5. **Locate Trained Model:**
+- Find the trained model at `runs/train/expX/weights/best.pt`.
+
+6. **Convert to TFLite:**
+
+            python path/to/export.py --weights path/to/trained/weights/best.pt --include tflite
+
+# Deploying the Model in Flutter
+
+The model is now ready to be deployed in a Flutter application.
