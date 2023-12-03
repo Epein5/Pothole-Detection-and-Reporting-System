@@ -52,9 +52,41 @@ Keep the datasets  in this format
                      |
                      |----data.yaml
                      
-# Note : This proess plays a vital role as any mistakes may casue the training process to be uncessful(cause errors)
-# So make sure that for every images there is a .txt file with the same name containg the correct labels and the path is correct in data.yaml file
+Note : This proess plays a vital role as any mistakes may casue the training process to be uncessful(cause errors)
+
+So make sure that for every images there is a .txt file with the same name containg the correct labels and the path is correct in data.yaml file
 
 
 
 # TRAIN THE MODEL
+
+1. Go to your project directory and clone the yolov5 git repo
+
+        git clone https://github.com/ultralytics/yolov5.git
+
+2. Around line 442 , Inside the 'train.py' located inside the yolov5 dir change the following accoring to your needs i.e ephocs, batch-size, imgsize etc
+
+         def parse_opt(known=False):
+            parser = argparse.ArgumentParser()
+            parser.add_argument('--weights', type=str, default=ROOT / 'yolov5s.pt', help='initial weights path')
+            parser.add_argument('--cfg', type=str, default='', help='model.yaml path')
+            parser.add_argument('--data', type=str, default=' .........path/to/your/data.yaml/ file.......', help='dataset.yaml path')
+            parser.add_argument('--hyp', type=str, default=ROOT / 'data/hyps/hyp.scratch-low.yaml', help='hyperparameters path')
+            parser.add_argument('--epochs', type=int, default=100, help='total training epochs')
+            parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs, -1 for autobatch')
+            parser.add_argument('--imgsz', '--img', '--img-size', type=int, default=640, help='train, val image size (pixels)')
+
+3. Activate your GPU enabled enviroment if your system suppotes GPU else just let it be (GPU will save your training time)
+      
+4. Run the train.py
+  
+            python train.py
+   
+Wait for the training to finish
+
+Once the training is finished you can fing your costum model   at runs/train/expX/weights/best.pt
+
+5. Convert the .pt model to tflite
+
+           python path/to/export.py --weights path/to/trained/weights/best.pt --include tflite
+# Now our model is ready 
