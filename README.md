@@ -11,6 +11,8 @@ This is the repository for our 2nd year / Fourth semester project.
 
          pip install -r requiremtns.txt
 
+
+
 # DATA COLLECTION AND PREPROCESSING
 
 1. Collect images you want to the yolo model to predict individually and save them in 3 folders train, test and valid
@@ -32,5 +34,26 @@ This is the repository for our 2nd year / Fourth semester project.
 
 8. To move the images and labels from one folder to another it is recommended to use 'locationchanger.py' as it moves all the labels as well as images in a go rather then CtrlX CrtlV
 
-   # Note : This proess plays a vital role as any mistakes may casue the training process to be uncessful(cause errors)
-   - So make sure that for every images there is a .txt file with the same name containg the correct labels
+Keep the datasets  in this format
+      Main Dir
+            |---Datasets
+                     |----Train
+                     |       |---Images
+                     |       |---Lables
+                     |
+                     |----Test
+                     |      | ---Images
+                     |      | ---Lables
+                     |
+                     |----Valid
+                     |     | ---Images
+                     |     | ---Lables
+                     |
+                     |----data.yaml
+                     
+# Note : This proess plays a vital role as any mistakes may casue the training process to be uncessful(cause errors)
+# So make sure that for every images there is a .txt file with the same name containg the correct labels and the path is correct in data.yaml file
+
+
+
+# TRAIN THE MODEL
