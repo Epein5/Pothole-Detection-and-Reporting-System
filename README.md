@@ -91,4 +91,18 @@ Wait for the training process to complete.
 
 # Deploying the Model in Flutter
 
-The model is now ready to be deployed in a Flutter application.
+1. **Model Placement in Flutter:**
+   - Store the model along with its labels in the 'assets' folder inside the 'flutter_application' directory.
+
+2. **Setting Up Firebase:**
+   - Connect your Flutter application with a Firebase project.
+   - Follow [this tutorial](https://www.youtube.com/watch?v=mAZ03PCp2ZI) for detailed instructions.
+
+3. **Running Flutter Application:**
+   - Execute the following commands:
+     
+     ```
+     flutter pub get
+     flutter run
+     ```
+   Your application is now ready for deployment.
