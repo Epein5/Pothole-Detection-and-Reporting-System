@@ -75,7 +75,8 @@ Our system integrates a trained YOLOv5 model with a TensorFlow Lite conversion t
 ## Training the Model
 
 1. **Clone YOLOv5 Repository:**
-            
+- Inside Pothole-Detection-and-Reporting-System directory
+  
             git clone https://github.com/ultralytics/yolov5.git
 
 
