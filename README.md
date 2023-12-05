@@ -1,5 +1,24 @@
-## SEm Project
-## Getting Started
+## Pothole Detection and Reporting System
+## Overview
+Our system integrates a trained YOLOv5 model with a TensorFlow Lite conversion to detect potholes. It's built into a mobile application featuring live pothole detection, GPS-based reporting, and visualization on an OpenStreetMap (OSM).
+
+## Features
+1. Pothole Reporting: Users can report potholes by capturing images. The GPS coordinates are sent to a Firebase database for future reference and action.
+
+2. Live Pothole Detection: The application continuously scans the surroundings using a camera. When a pothole is detected, its location, identified through the YOLOv5 model, is sent in real-time to the Firebase database.
+
+3. Vehicle-Mounted Detection: By placing a camera in front of a vehicle, the system can detect potholes during travel. This facilitates the collection of pothole data along routes.
+
+4. OSM Map Integration: Users can view the GPS coordinates of reported potholes on an OpenStreetMap interface within the application. This allows for a visual representation of pothole locations across a geographic area.
+
+## How It Works
+1. Model Training: The YOLOv5 model was trained on a dataset of 50,000 images to accurately detect potholes.
+
+2. Conversion to TensorFlow Lite: The trained model was converted to TFLite for efficient deployment on mobile devices.
+
+3. Mobile Application: The mobile app enables users to report potholes, perform live detection, and view reported incidents on an OSM map.
+
+## Get Started
 
 1. **Clone the Repository:**
                   
