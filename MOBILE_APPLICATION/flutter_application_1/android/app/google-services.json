@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "22433758584",
+    "firebase_url":"https://pothole-detection-e0430-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    "project_id": "pothole-detection-e0430",
+    "storage_bucket": "pothole-detection-e0430.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22433758584:android:221c191129bd22c0545c8d",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtCL_GwgvXz1AXBkx7hA61ULcJMoTjmfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

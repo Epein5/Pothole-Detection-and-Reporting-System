@@ -1,0 +1,2 @@
+0 Not-Pothole
+1 Pothole

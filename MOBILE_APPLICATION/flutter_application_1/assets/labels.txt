@@ -1,0 +1,3 @@
+pothole
+not-pothole
+damaged-road
