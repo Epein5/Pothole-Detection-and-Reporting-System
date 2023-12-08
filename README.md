@@ -126,3 +126,5 @@ Wait for the training process to complete.
      flutter run
      ```
    Your application is now ready for deployment.
+   
+   For more details on the application visit the README inside the MOBILE APPLICAITON dir.
