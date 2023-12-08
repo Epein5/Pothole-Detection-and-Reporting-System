@@ -128,3 +128,40 @@ Wait for the training process to complete.
    Your application is now ready for deployment.
    
    For more details on the application visit the README inside the MOBILE APPLICAITON dir.
+
+<br>
+<br>
+
+# Request for Contributions: 
+## Adding Bounding Box for Live Detection
+I am looking to enhance live pothole detection feature by implementing a bounding box visualization around detected potholes. This improvement will provide users with a clearer indication of where the detected potholes are in the camera view.
+
+<br>
+
+## Task Description
+The task involves adding a bounding box around identified potholes during live detection. This will require modifications in the YOLOv5 model integration and the UI to draw and update bounding boxes accordingly.
+
+<br>
+
+## How to Contribute
+  - Fork the repository.
+  - Implement the bounding box feature in the live detection module.
+  - Test the functionality thoroughly.
+  - Submit a pull request with your changes in your won branch
+<br>
+
+## Resources
+  - Check the existing YOLOv5 model integration and  https://pub.dev/packages/flutter_vision.
+  - Refer to the YOLOv5 documentation for assistance.
+ <br>
+ 
+## Helpful Tips
+  - Ensure the bounding box aligns accurately with detected potholes.
+  - Maintain code quality and adhere to Flutter's best practices.
+  - Document your changes adequately for better understanding.
+ <br>
+ 
+## Get Started
+Feel free to reach out if you have any questions or need clarification on the task. Let's collaborate to enhance our live pothole detection feature!
+
+Your contributions are highly appreciated!
