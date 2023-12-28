@@ -11,12 +11,13 @@ class SendDetails {
   DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
   PopUpMessage popUpMessage = PopUpMessage();
 
-  Future<void> sendDetails(LatLng latlng) async {
+  Future<void> sendDetails(context, LatLng latlng) async {
     // print("kitta");
     try {
       await databaseReference.child('Potholes').push().set({
         'lat': latlng.latitude,
         'lng': latlng.longitude,
+      }).then((value) {
       });
       // print("Uploaded");
     } catch (error) {
@@ -52,19 +53,19 @@ class SendDetails {
 
     try {
       // Upload the image file to Firebase Storage
-      UploadTask uploadTask = ref.putFile(imageFile);
+      // UploadTask uploadTask = ref.putFile(imageFile);
 
       // Await for the upload to complete
-      TaskSnapshot taskSnapshot = await uploadTask;
+      // TaskSnapshot taskSnapshot = await uploadTask;
 
       // Get the storage URL
-      String imageUrl = await ref.getDownloadURL(); 
+      // String imageUrl = await ref.getDownloadURL();
 
       // Store the URL and location data in Firebase Realtime Database
       await databaseReference.child('Potholes').push().set({
         'lat': latlng?.latitude,
         'lng': latlng?.longitude,
-        'imageurl': imageUrl,
+        // 'imageurl': imageUrl,
       });
 
       // Show success message

@@ -52,6 +52,7 @@ dependencies:
   flutter_tflite: ^1.0.1
   image_picker: ^0.8.6+2
   another_flushbar: ^1.12.30
+  flutter_svg: ^2.0.9
 
 dev_dependencies:
   flutter_test:

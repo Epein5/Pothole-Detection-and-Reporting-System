@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/firestore.dart';
+import 'package:flutter_application_1/utils/popupmessage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:latlong2/latlong.dart';
@@ -16,6 +17,7 @@ class ReportPotholeView extends StatefulWidget {
 class _ReportPotholeViewState extends State<ReportPotholeView> {
   Location location = Location();
   LocationData? _locationData;
+  PopUpMessage popUpMessage = PopUpMessage();
 
   @override
   void initState() {
@@ -195,18 +197,24 @@ class _ReportPotholeViewState extends State<ReportPotholeView> {
                               ' Pothole'
                           ? GestureDetector(
                               onTap: () async {
+                                popUpMessage.flushbarmessage(context,
+                                    "Wait for a moment", "Sending Details");
                                 await retrieveLocation();
                                 // ignore: use_build_context_synchronously
-                                sendDetails.SendDetailswithimage(
-                                  context,
-                                  _locationData,
-                                  _image,
-                                );
 
-                                sendDetails.sendDetails(
-                                  LatLng(_locationData!.latitude!,
-                                      _locationData!.longitude!),
-                                );
+                                // ignore: use_build_context_synchronously
+                                sendDetails
+                                    .sendDetails(
+                                        context,
+                                        LatLng(_locationData!.latitude!,
+                                            _locationData!.longitude!))
+                                    .then((value) {
+                                  Navigator.pop(context);
+                                  popUpMessage.flushbarmessage(
+                                      context,
+                                      "Thanks for you contribution",
+                                      "Successfully Reported");
+                                });
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(

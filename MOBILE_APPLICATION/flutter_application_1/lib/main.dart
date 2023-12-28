@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home.dart';
+// import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/views/livedetection.dart';
+import 'package:flutter_application_1/views/onbording.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 
@@ -38,11 +39,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 1), () {
       Navigator.pushReplacement<void, void>(
           context,
           MaterialPageRoute<void>(
-            builder: (BuildContext context) => const HomePage(),
+            builder: (BuildContext context) => Onbording(),
           ));
     });
   }

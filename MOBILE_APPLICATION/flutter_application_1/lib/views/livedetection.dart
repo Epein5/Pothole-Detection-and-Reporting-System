@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/firestore.dart';
+import 'package:flutter_application_1/utils/boundingbox.dart';
+import 'package:flutter_application_1/utils/popupmessage.dart';
 import 'package:flutter_vision/flutter_vision.dart';
 import 'package:camera/camera.dart';
 import 'package:latlong2/latlong.dart';
@@ -32,6 +34,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
   DetectedObjectsProvider _detectedObjectsProvider = DetectedObjectsProvider();
   Location location = Location();
   LocationData? _locationData;
+  PopUpMessage popUpMessage = PopUpMessage();
 
   @override
   void initState() {
@@ -70,9 +73,12 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
 
   Future<void> _startObjectDetection() async {
     await vision.loadYoloModel(
-      labels: 'assets/labels.txt',
-      modelPath: 'assets/yolov5.tflite',
-      modelVersion: 'yolov5',
+      // labels: 'assets/labels.txt',
+      // modelPath: 'assets/yolov5.tflite',
+      // modelVersion: 'yolov5',
+      labels: 'assets/yolov8.txt',
+      modelPath: 'assets/yolov8.tflite',
+      modelVersion: 'yolov8',
       quantization: false,
       numThreads: 1,
       useGpu: false,
@@ -86,14 +92,14 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
             bytesList: image.planes.map((plane) => plane.bytes).toList(),
             imageHeight: image.height,
             imageWidth: image.width,
-            iouThreshold: 0.01,
-            confThreshold: 0.01,
-            classThreshold: 0.01,
+            iouThreshold: 0.5,
+            confThreshold: 0.5,
+            classThreshold: 0.5,
           );
 
           isDetecting = false;
           if (result.isNotEmpty) {
-            // print(result);
+            print(result);
             _detectedObjectsProvider.updateDetectedObjects(result);
           }
         }
@@ -135,9 +141,8 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
       // This callback function will run every 2 seconds
       print('Timer fired at ${DateTime.now()}');
       _detectedObjectsProvider.detectedObjects[0]['tag'] == 'pothole'
-          ? sendDeteils.sendDetails(
-              LatLng(_locationData!.latitude!, _locationData!.longitude!),
-            )
+          ? sendDeteils.sendDetails(context,
+              LatLng(_locationData!.latitude!, _locationData!.longitude!))
           : print('no pothole');
     });
   }
@@ -150,6 +155,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.purple.shade900,
         onPressed: () {
           location_uploader();
         },
@@ -158,8 +164,8 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
       body: ChangeNotifierProvider(
         create: (_) => _detectedObjectsProvider,
         child: SlidingUpPanel(
-          color: Colors.purple.shade100,
-          minHeight: 300,
+          color: const Color.fromARGB(255, 0, 0, 0),
+          minHeight: 250,
           maxHeight: 700,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),
@@ -228,16 +234,27 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
           body: Stack(
             children: [
               CameraPreview(_cameraController!),
-              // Consumer<DetectedObjectsProvider>(
-              //     builder: (context, provider, _) {
-              //   if (provider.detectedObjects.isNotEmpty) {
-              //     return const CustomPaint(
-              //       size: Size.infinite,
-              //       // painter: BoundingBoxPainter(provider.detectedObjects),
-              //     );
-              //   }
-              //   return const SizedBox.shrink();
-              // })
+              Consumer<DetectedObjectsProvider>(
+                  builder: (context, provider, _) {
+                //print(provider._detectedObjects);
+                if (provider.detectedObjects.isNotEmpty) {
+                  return CustomPaint(
+                    size: Size(
+                      _cameraController!.value.previewSize!.height,
+                      _cameraController!.value.previewSize!.width,
+                    ),
+                    painter: BoundingBoxPainter(
+                        provider.detectedObjects,
+                        Size(
+                          _cameraController!.value.previewSize!.width
+                              .toDouble(),
+                          _cameraController!.value.previewSize!.height
+                              .toDouble(),
+                        )),
+                  );
+                }
+                return const SizedBox.shrink();
+              })
             ],
           ),
         ),
