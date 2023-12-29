@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       child: const MaterialApp(
         title: 'Object Detection App',
         debugShowCheckedModeBanner: false,
+        // home: ObjectDetectionScreen(),
         home: SplashScreen(),
       ),
     );

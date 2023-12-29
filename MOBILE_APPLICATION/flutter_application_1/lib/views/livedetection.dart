@@ -140,10 +140,16 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
     Timer.periodic(Duration(seconds: 5), (Timer timer) {
       // This callback function will run every 2 seconds
       print('Timer fired at ${DateTime.now()}');
-      _detectedObjectsProvider.detectedObjects[0]['tag'] == 'pothole'
+      _detectedObjectsProvider.detectedObjects.isNotEmpty &&
+              _detectedObjectsProvider.detectedObjects[0]['tag'] == 'pothole'
           ? sendDeteils.sendDetails(context,
               LatLng(_locationData!.latitude!, _locationData!.longitude!))
           : print('no pothole');
+      // _detectedObjectsProvider.detectedObjects[0]['tag'] == 'pothole'
+      //     ? sendDeteils.sendDetails(context,
+      //         LatLng(_locationData!.latitude!, _locationData!.longitude!))
+      //     : print('no pothole');
+      _detectedObjectsProvider.detectedObjects.clear();
     });
   }
 
