@@ -78,9 +78,12 @@ Our system integrates a trained YOLOv5 model with a TensorFlow Lite conversion t
 - Inside Pothole-Detection-and-Reporting-System directory
   
             git clone https://github.com/ultralytics/yolov5.git
+2. **Install yolov5 Dependencies:**
+
+            pip install -r requirements.txt
 
 
-2. **Customize Training Parameters:**
+3. **Customize Training Parameters:**
 - Modify settings in the 'train.py' file (around line 442) to adjust epochs, batch-size, imgsize, etc.
 
             def parse_opt(known=False):
@@ -93,19 +96,19 @@ Our system integrates a trained YOLOv5 model with a TensorFlow Lite conversion t
                   parser.add_argument('--batch-size', type=int, default=16, help='total batch size for all GPUs, -1 for autobatch')
                   parser.add_argument('--imgsz', '--img', '--img-size', type=int, default=640, help='train, val image size (pixels)')
                   
-3. **GPU Activation:**
+4. **GPU Activation:**
 - Activate GPU-enabled environment for faster training if available.
 
-4. **Train the Model:**
+5. **Train the Model:**
 
             python train.py
 
 Wait for the training process to complete.
 
-5. **Locate Trained Model:**
+6. **Locate Trained Model:**
 - Find the trained model at `runs/train/expX/weights/best.pt`.
 
-6. **Convert to TFLite:**
+7. **Convert to TFLite:**
 
             python path/to/export.py --weights path/to/trained/weights/best.pt --include tflite
 
